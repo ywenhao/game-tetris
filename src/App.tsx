@@ -1,26 +1,9 @@
 import { type Component, For } from 'solid-js'
-import { createStore, produce } from 'solid-js/store'
+import { produce } from 'solid-js/store'
 
 import styles from './App.module.scss'
-
-type GameItem = 0 | 1
-
-const ShowBoxRow: Component<{ col: GameItem[] }> = (props) => (
-  <div class="showBox__row">
-    <For each={props.col}>
-      {(item) => <div class={item ? `active gameItem` : `gameItem`} />}
-    </For>
-  </div>
-)
-
-const createInitialItemList = (x: number, y: number) =>
-  Array(y)
-    .fill(0)
-    .map(() => Array(x).fill(0)) as GameItem[][]
-
-const initialItemList = createInitialItemList(40, 60)
-
-const [itemList, setITemList] = createStore(initialItemList)
+import ShowBoxRow from '@/components/ShowBoxRow'
+import { itemList, setITemList } from './stores/item'
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowUp') {
