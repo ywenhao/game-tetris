@@ -9,10 +9,35 @@ export function transformItem() {
   )
 }
 
+export function speedDownItem() {
+  setITemList(
+    produce((list) => {
+      list[0][0] = list[0][0] ? 0 : 1
+    })
+  )
+}
+
+export function moveLeftItem() {
+  console.log('moveLeftItem')
+}
+
+export function moveRightItem() {
+  console.log('moveRightItem')
+}
+
+export function dropItem() {
+  console.log('dropItem')
+}
+
 function keydownEvent(e: KeyboardEvent) {
-  if (e.key === 'ArrowUp') {
-    transformItem()
+  const eventMap = {
+    ArrowUp: transformItem,
+    ArrowDown: speedDownItem,
+    ArrowLeft: moveLeftItem,
+    ArrowRight: moveRightItem,
+    Space: dropItem,
   }
+  eventMap[e.code as keyof typeof eventMap]?.()
 }
 
 export function addEvents() {
