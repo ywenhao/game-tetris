@@ -1,20 +1,20 @@
-import { type Component, For } from 'solid-js'
-import { produce } from 'solid-js/store'
-
+import { type Component, For, onMount, onCleanup } from 'solid-js'
 import styles from './App.module.scss'
 import ShowBoxRow from '@/components/ShowBoxRow'
-import { itemList, setITemList } from './stores/item'
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowUp') {
-    setITemList(produce((list) => (list[0][0] = list[0][0] ? 0 : 1)))
-  }
-})
+import { itemList } from './stores/item'
+import { addEvents, removeEvents } from './utils/events'
 
 const App: Component = () => {
   const handleClick = () => {
     // setITemList(produce((list) => (list[0][0] = list[0][0] ? 0 : 1)))
   }
+  onMount(() => {
+    addEvents()
+  })
+
+  onCleanup(() => {
+    removeEvents()
+  })
   return (
     <div class={styles.gameBox}>
       <div class="showBox">
