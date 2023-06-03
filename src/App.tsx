@@ -5,9 +5,6 @@ import { itemList } from './stores/item'
 import { addEvents, removeEvents } from './utils/events'
 
 const App: Component = () => {
-  const handleClick = () => {
-    // setITemList(produce((list) => (list[0][0] = list[0][0] ? 0 : 1)))
-  }
   onMount(() => {
     addEvents()
   })
@@ -24,7 +21,7 @@ const App: Component = () => {
         </div>
       </div>
       <div class="doBox">
-        <button onClick={handleClick}>click me</button>
+        {/* <button onClick={handleClick}>click me</button> */}
       </div>
     </div>
   )
